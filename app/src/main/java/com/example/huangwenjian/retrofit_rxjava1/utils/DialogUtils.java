@@ -23,7 +23,7 @@ public class DialogUtils {
     }
 
     /**
-     * 展示loading中的对话框
+     * 展示loading对话框
      *
      * @param context
      */
@@ -38,8 +38,5 @@ public class DialogUtils {
     public static void hideLoading() {
         mDialog.dismiss();
         mDialog = null;
-        System.out.println("");
     }
-
-
 }
