@@ -12,51 +12,46 @@ import com.example.huangwenjian.retrofit_rxjava1.bean.WeatherBean;
 import com.example.huangwenjian.retrofit_rxjava1.utils.DialogUtils;
 import com.trello.rxlifecycle.components.RxActivity;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_main)
 public class MainActivity extends RxActivity {
 
-    private Button mBtn_weather;
-    private TextView mTv_city;
-    private Button mBtn_dialog;
-    private Button mBtn_start;
+    @ViewById(R.id.btn_weather)
+    Button mBtn_weather;
+
+    @ViewById(R.id.tv_city)
+    TextView mTv_city;
+
+    @ViewById(R.id.btn_dialog)
+    Button mBtn_dialog;
+
+    @ViewById(R.id.btn_start)
+    Button mBtn_start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        initView();
-        initListener();
     }
 
-    private void initView() {
-        mBtn_weather = (Button) findViewById(R.id.btn_weather);
-        mTv_city = (TextView) findViewById(R.id.tv_city);
-        mBtn_dialog = (Button) findViewById(R.id.btn_dialog);
-        mBtn_start = (Button) findViewById(R.id.btn_start);
-    }
-
-    private void initListener() {
-        mBtn_weather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Click({R.id.btn_weather, R.id.btn_dialog, R.id.btn_start})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_weather:
                 APIManager.doApi(API.getWeather(), MainActivity.this, bean -> refreshUI(bean), e -> onError());
-            }
-        });
-
-        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.btn_dialog:
                 DialogUtils.showDialog(MainActivity.this, R.layout.dialog_custom);
-            }
-        });
-
-        mBtn_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                break;
+            case R.id.btn_start:
+                Intent intent = new Intent(MainActivity.this, SecondActivity_.class);
                 startActivity(intent);
-            }
-        });
+                break;
+            default:
+                break;
+        }
     }
 
     /**
