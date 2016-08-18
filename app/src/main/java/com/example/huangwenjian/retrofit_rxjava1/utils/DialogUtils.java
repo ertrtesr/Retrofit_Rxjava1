@@ -38,6 +38,7 @@ public class DialogUtils {
     public static void hideLoading() {
         mDialog.dismiss();
         mDialog = null;
+        System.out.println("");
     }
 
 
