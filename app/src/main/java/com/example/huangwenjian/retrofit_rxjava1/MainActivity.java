@@ -1,5 +1,6 @@
 package com.example.huangwenjian.retrofit_rxjava1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ public class MainActivity extends RxActivity {
     private Button mBtn_weather;
     private TextView mTv_city;
     private Button mBtn_dialog;
+    private Button mBtn_start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends RxActivity {
         mBtn_weather = (Button) findViewById(R.id.btn_weather);
         mTv_city = (TextView) findViewById(R.id.tv_city);
         mBtn_dialog = (Button) findViewById(R.id.btn_dialog);
+        mBtn_start = (Button) findViewById(R.id.btn_start);
     }
 
     private void initListener() {
@@ -44,6 +47,14 @@ public class MainActivity extends RxActivity {
             @Override
             public void onClick(View view) {
                 DialogUtils.showDialog(MainActivity.this, R.layout.dialog_custom);
+            }
+        });
+
+        mBtn_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
             }
         });
     }
