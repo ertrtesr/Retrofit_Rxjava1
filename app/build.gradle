@@ -4,8 +4,8 @@ apply plugin: 'android-apt'
 def AAVersion = '4.1.0'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
 //    compileOptions {
 //        sourceCompatibility JavaVersion.VERSION_1_8
@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.example.huangwenjian.retrofit_rxjava1"
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
 

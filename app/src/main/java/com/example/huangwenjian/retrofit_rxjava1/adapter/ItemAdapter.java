@@ -1,6 +1,7 @@
 package com.example.huangwenjian.retrofit_rxjava1.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class ItemAdapter<T> extends BaseAdapter {
     private List<String> mList;
     private int mItemLayoutId;
     private LayoutInflater mInflater;
+    private int mSelectedPosition;
 
     public ItemAdapter() {
     }
@@ -66,11 +68,25 @@ public class ItemAdapter<T> extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         holder.tv_item.setText(mList.get(position));
+        if (position == mSelectedPosition) {   //如果条目被选中
+            holder.tv_item.setSelected(true);
+        } else {    //如果条目没被选中
+            holder.tv_item.setSelected(false);
+        }
         return view;
     }
 
+    /**
+     * 设置条目选中
+     *
+     * @param position
+     */
+    public void setSelected(int position) {
+        this.mSelectedPosition = position;
+        notifyDataSetChanged();     //整表更新
+    }
 
-    static class ViewHolder {
+    class ViewHolder {
         TextView tv_item;
 
         public ViewHolder() {
